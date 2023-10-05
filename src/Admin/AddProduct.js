@@ -7,21 +7,27 @@ const AddProduct = (event) => {
    const [price, setprice] = useState()
    const [category, setcategory] = useState()
    const [image, setimage] = useState()
+   //const [productID, setproductID] = useState()
     
 
      
     const onSubmitHandler = (event) => {
          console.log("Submitted");
          event.preventDefault(); 
+         const currentTimeInSeconds = Math.floor(Date.now() / 1000);
+
+console.log("Current time in seconds:", currentTimeInSeconds);
+
          console.log(productname,description,price,category,image)
 
         let url = "http://localhost:802/admin/addproduct";
         let data = {
-          "productname": productname,
-          "description": description,
-          "price": price,
-          "category" : category,
-          "image" : image
+          productname: productname,
+          description: description,
+          price: price,
+          category: category,
+          image: image,
+          productID: currentTimeInSeconds,
         };
 
          axios.post(url, data).then((response) => {
