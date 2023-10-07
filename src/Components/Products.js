@@ -24,6 +24,7 @@ const Products = () => {
     try {
       const response = await axios.get("http://localhost:802/user/products");
       setproductList(response.data);
+      console.log(response.data)
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -46,6 +47,7 @@ const Products = () => {
   useEffect(() => {
     ProductsNew();
     console.log("I am in use effect");
+    // console.log("image path is ",productList[0].imagePath);
   }, []);
 
   return (
@@ -63,8 +65,9 @@ const Products = () => {
               }}
             >
               <img
-                src={ProItem.image}
-                alt="Product Image"
+                // src={"http://localhost:802/1696658747893-Screenshot 2023-09-26 at 12.24.17 PM.png"}
+                src={`http://localhost:802/${ProItem.imagePath.slice(7)}`}
+                alt={ProItem.imagePath}
                 style={{ width: "100%", height: "auto" }}
               />
 

@@ -2,42 +2,54 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 const AddProduct = (event) => {
-   const [productname, setproductname] = useState()
-   const [description, setdescription] = useState()
-   const [price, setprice] = useState()
-   const [category, setcategory] = useState()
-   const [image, setimage] = useState()
-   //const [productID, setproductID] = useState()
-    
-
-     
-    const onSubmitHandler = (event) => {
-         console.log("Submitted");
-         event.preventDefault(); 
-         const currentTimeInSeconds = Math.floor(Date.now() / 1000);
-
-console.log("Current time in seconds:", currentTimeInSeconds);
-
-         console.log(productname,description,price,category,image)
-
-        let url = "http://localhost:802/admin/addproduct";
-        let data = {
-          productname: productname,
-          description: description,
-          price: price,
-          category: category,
-          image: image,
-          productID: currentTimeInSeconds,
-        };
-
-         axios.post(url, data).then((response) => {
-          console.log(response.data);
-        });
+  const [productname, setproductname] = useState()
+  const [description, setdescription] = useState()
+  const [price, setprice] = useState()
+  const [category, setcategory] = useState()
+  const [image, setimage] = useState()
+  //const [productID, setproductID] = useState()
 
 
 
+  const onSubmitHandler = (event) => {
+    console.log("Submitted");
+    event.preventDefault();
+    const currentTimeInSeconds = Math.floor(Date.now() / 1000);
 
+    console.log("Current time in seconds:", currentTimeInSeconds);
+
+    console.log(productname, description, price, category, image)
+    const formData = new FormData();
+    formData.append('productname', productname);
+    formData.append('description', description);
+    formData.append('price', price);
+    formData.append('category', category);
+    formData.append('productID', currentTimeInSeconds);
+    formData.append('image', image[0]);
+    console.log("image is ",image[0])
+
+    let url = "http://localhost:802/admin/addproduct";
+    // let data = {
+    //   productname: productname,
+    //   description: description,
+    //   price: price,
+    //   category: category,
+    //   image: image,
+    //   productID: currentTimeInSeconds,
+    // };
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      }
     }
+    axios.post(url, formData,config).then((response) => {
+      console.log(response.data);
+    });
+
+
+
+
+  }
 
   return (
     <div className="container">
@@ -106,7 +118,7 @@ console.log("Current time in seconds:", currentTimeInSeconds);
             type="file"
             class="form-control"
             id="exampleimage"
-            // placeholder="Enter the price"
+          // placeholder="Enter the price"
           />
         </div>
 
