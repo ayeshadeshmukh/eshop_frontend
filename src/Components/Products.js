@@ -1,7 +1,7 @@
 import Product1 from "../Products/Product1";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-
+import "../css/productCard.css";
 const Products = () => {
   const [productList, setproductList] = useState([]);
   const [token, settoken] = useState();
@@ -24,6 +24,7 @@ const Products = () => {
     try {
       const response = await axios.get("http://localhost:802/user/products");
       setproductList(response.data);
+      console.log(productList)
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -46,45 +47,35 @@ const Products = () => {
   useEffect(() => {
     ProductsNew();
     console.log("I am in use effect");
+    console.log(productList);
   }, []);
 
+
+  
   return (
-    <div>
+    <div className="container" id="productTray">
       {productList.map(
         (
           ProItem // the map() method is used to iterate over an array and call function on every element of the array.
         ) => (
-          <div id={ProItem.productID}>
-            <div
-              style={{
-                width: "300px",
-                border: "1px solid #ccc",
-                padding: "10px",
-              }}
-            >
-              <img
-                src={ProItem.image}
-                alt="Product Image"
-                style={{ width: "100%", height: "auto" }}
-              />
-
-              <h3 style={{ marginTop: "10px" }}>
-                Product Name: {ProItem.productname}
-              </h3>
-              <p>Description: {ProItem.description}</p>
-              <p style={{ fontWeight: "bold" }}>Price: ${ProItem.price}</p>
-              <p>category: {ProItem.category}</p>
-
+          <div class="product-card" id={ProItem.productID}>
+            <img
+              src={
+                ProItem.imagePath
+                  ? `http://localhost:802/${ProItem.imagePath.slice(7)}`
+                  : " "
+              }
+              alt="Product Image"
+              class="product-image"
+            />
+            <div class="product-info">
+              <h2 class="product-title">{ProItem.productname}</h2>
+              <p class="product-description">{ProItem.description}</p>
+              <p class="product-price">₹{ProItem.price} (700) 20% off</p>
               <button
+                class="add-to-cart-button"
                 onClick={(event) => {
                   onclick(event.currentTarget.parentElement.parentElement);
-                }}
-                style={{
-                  backgroundColor: "#007bff",
-                  color: "#fff",
-                  padding: "8px 16px",
-                  border: "none",
-                  cursor: "pointer",
                 }}
               >
                 Add to Cart
