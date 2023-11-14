@@ -10,6 +10,7 @@ import SignUp from "./Components/SignUp";
 import SignIn from "./Components/SignIn";
 import AddProduct from "./Admin/AddProduct";
 import Cart from "./Components/Cart";
+import NewCart from "./Components/NewCart"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -24,7 +25,7 @@ function App() {
   return (
     <>
       <Nav></Nav>
-      
+
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
@@ -35,6 +36,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/addproduct" element={<AddProduct />} />
+        <Route path="/newcart" element={<NewCart />} />
       </Routes>
     </>
   );

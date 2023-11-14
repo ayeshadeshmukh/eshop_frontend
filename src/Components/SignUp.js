@@ -1,58 +1,47 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-
 const SignUp = () => {
-     
   const [name, setname] = useState();
   const [phone, setphone] = useState();
   const [email, setemail] = useState();
   const [password, setpassword] = useState();
   const [cpassword, setcpassword] = useState();
 
-
-
-
-  const onSubmitHandler = (event) =>{      //here event parameter is use to stop the form page on refreshing on its own
-    console.log('Submitted')
-    event.preventDefault()     //prevents
-    console.log(name,phone,email,password,cpassword)
+  const onSubmitHandler = (event) => {
+    //here event parameter is use to stop the form page on refreshing on its own
+    console.log("Submitted");
+    event.preventDefault(); //prevents
+    console.log(name, phone, email, password, cpassword);
     //I'll write post and get request code using axios under this line
-    
+
     let url = "http://localhost:802/user/signup";
     let data = {
-      'name' : name,
-      "phone" : phone,
-      'email' : email,
-      'password': password,
-      'cpassword' : cpassword
-    }
-         if(password==cpassword){
-       //(url,data u want to sending to the server)
-    axios.post(url, data)
-      .then((response) => {
-        console.log(response.data)
+      name: name,
+      phone: phone,
+      email: email,
+      password: password,
+      cpassword: cpassword,
+    };
+    if (password == cpassword) {
+      //(url,data u want to sending to the server)
+      axios.post(url, data).then((response) => {
+        console.log(response.data);
       });
+    } else {
+      alert("Password doesnot match");
     }
-
-    else{
-       alert("Password doesnot match")
-
-    }
-  
-
-
-
-
-  }
+  };
   return (
     <div className="container">
       <form onSubmit={onSubmitHandler}>
         <div class="form-group">
           <label for="Jane Doe">Enter Your Name</label>
           <input
-            onChange={(event) => {setname(event.target.value)}} //The onChange event in React detects when the value of an input element changes.
-            type="name"                                          //target = where did it change/where the event has occur , value = after the change what was the value
+            onChange={(event) => {
+              setname(event.target.value);
+            }} //The onChange event in React detects when the value of an input element changes.
+            type="name" //target = where did it change/where the event has occur , value = after the change what was the value
             class="form-control"
             id="Jane Doe"
             aria-describedby="name"
