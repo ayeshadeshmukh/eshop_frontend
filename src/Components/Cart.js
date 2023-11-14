@@ -12,8 +12,8 @@ const Cart = () => {
       .get(url)
       .then((response) => {
         const data = response.data;
-        console.log(response);
-        setcart(data);
+        console.log("my response",response);
+         setcart(data);
       })
       .catch((error) => {
         console.error("Error fetching cart details:", error);
