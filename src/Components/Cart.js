@@ -4,69 +4,48 @@ import axios from "axios";
 const Cart = () => {
   const [cart, setcart] = useState([]);
 
-  const getcartdetails = async() => {
-    console.log("inside cart details")
+  const getcartdetails = async () => {
+    console.log("inside cart details");
     let url = "http://localhost:802/user/getcartdetails";
-      
+
     await axios
       .get(url)
       .then((response) => {
         const data = response.data;
-        console.log("my response",response);
-         setcart(data);
+        console.log("my response", response);
+        setcart(data);
       })
       .catch((error) => {
         console.error("Error fetching cart details:", error);
       });
   };
 
+  const deletecart = async (eventTarget) => {
+    let url = `http://localhost:802/user/deletefromcart?productID=${eventTarget.id}`;
+    let data = {
+      productid: eventTarget.id,
+    };
+    await axios.delete(url, data).then((response) => {
+      getcartdetails();
+      console.log(response.data);
+    });
+  };
 
-   const deletecart = async(eventTarget) =>{
-        let url = `http://localhost:802/user/deletefromcart?productID=${eventTarget.id}`;
-        let data = {
-          productid: eventTarget.id,
-        };
-await axios.delete(url,data).then((response)=>{
-          getcartdetails();
-          console.log(response.data)
-        })
-     
+  const updateCart = (quantity, rootelement) => {
+    console.log(quantity, rootelement.id);
 
+    let url = `http://localhost:802/user/updatequantity?productID=${rootelement.id}&quantity=${quantity}`;
 
-
-   }
-
-   const updateCart = (quantity,rootelement) => {
-      console.log(quantity,rootelement.id)
-
-      let url = `http://localhost:802/user/updatequantity?productID=${rootelement.id}&quantity=${quantity}`;
-
-      axios.put(url).then((response)=>{
-        console.log(response.data)
-        getcartdetails();
-      }) 
-
-
-   }
-
-
-
-
-
-
+    axios.put(url).then((response) => {
+      console.log(response.data);
+      getcartdetails();
+    });
+  };
 
   useEffect(() => {
     getcartdetails();
     console.log(cart);
   }, []);
-
-  //src={"http://localhost:802/" + cartItem.detail.imagePath}
-  {
-    /* <h2 class="product-title">{cartItem.detail.productname}</h2>
-               <p class="product-description">{cartItem.detail.description}</p>
-               <p class="product-price">{cartItem.detail.price}</p> */
-  }
-  // value={cartItem.quantity}
 
   return (
     <>
@@ -78,85 +57,78 @@ await axios.delete(url,data).then((response)=>{
                 <div class="m-4">
                   <h4 class="card-title mb-4">Your shopping cart</h4>
                   {cart &&
-                    cart.map(
-                      (
-                        cartItem // the map() method is used to iterate over an array and call function on every element of the array.
-                      ) => (
-                        <div
-                          id={cartItem.detail.productID}
-                          class="row gy-3 mb-4"
-                        >
-                          <div class="col-lg-5">
-                            <div class="me-lg-5">
-                              <div class="d-flex">
-                                <img
-                                  src={
-                                    "http://localhost:802/" +
-                                    cartItem.detail.imagePath
-                                  }
-                                  class="border rounded me-3"
-                                  style={{ width: "150px", height: "150px" }}
-                                />
+                    cart.map((cartItem) => (
+                      <div id={cartItem.detail.productID} class="row gy-3 mb-4">
+                        <div class="col-lg-5">
+                          <div class="me-lg-5">
+                            <div class="d-flex">
+                              <img
+                                src={
+                                  "http://localhost:802/" +
+                                  cartItem.detail.imagePath
+                                }
+                                class="border rounded me-3"
+                                style={{ width: "150px", height: "150px" }}
+                              />
 
-                                <h5 class=" ">{cartItem.detail.productname}</h5>
-                                <p> {"..."}</p>
-                                <p class="text-muted">
-                                  {cartItem.detail.description}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
-                            <div class="">
-                              <select
-                                style={{ width: "100px" }}
-                                class="form-select me-4"
-                                value={cartItem.quantity}
-                                onChange={(event) => {
-                                  updateCart(
-                                    event.target.value,
-                                    event.currentTarget.parentElement
-                                      .parentElement.parentElement
-                                  );
-                                }}
-                              >
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                              </select>
-                            </div>
-                            <div class="">
-                              <p class="product-price">
-                               Total  ${cartItem.detail.price * cartItem.quantity}
-                              </p>{" "}
-                              <br />
-                              <small class="text-muted text-nowrap">
-                                {" "}
-                                ${cartItem.detail.price} / per item{" "}
-                              </small>
-                            </div>
-                          </div>
-                          <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                            <div class="float-md-end">
-                              <a
-                                href="#"
-                                class="btn btn-light border text-danger icon-hover-danger"
-                                onClick={(event) => {
-                                  deletecart(
-                                    event.currentTarget.parentElement
-                                      .parentElement.parentElement
-                                  );
-                                }}
-                              >
-                                {" "}
-                                Remove
-                              </a>
+                              <h5 class=" ">{cartItem.detail.productname}</h5>
+                              <p> {"..."}</p>
+                              <p class="text-muted">
+                                {cartItem.detail.description}
+                              </p>
                             </div>
                           </div>
                         </div>
-                      )
-                    )}
+                        <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
+                          <div class="">
+                            <select
+                              style={{ width: "100px" }}
+                              class="form-select me-4"
+                              value={cartItem.quantity}
+                              onChange={(event) => {
+                                updateCart(
+                                  event.target.value,
+                                  event.currentTarget.parentElement
+                                    .parentElement.parentElement
+                                );
+                              }}
+                            >
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                            </select>
+                          </div>
+                          <div class="">
+                            <p class="product-price">
+                              Total ${cartItem.detail.price * cartItem.quantity}
+                            </p>{" "}
+                            <br />
+                            <small class="text-muted text-nowrap">
+                              {" "}
+                              ${cartItem.detail.price} / per item{" "}
+                            </small>
+                          </div>
+                        </div>
+                        <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
+                          <div class="float-md-end">
+                            <a
+                              href="#"
+                              class="btn btn-light border text-danger icon-hover-danger"
+                              onClick={(event) => {
+                                deletecart(
+                                  event.currentTarget.parentElement
+                                    .parentElement.parentElement
+                                );
+                              }}
+                            >
+                              {" "}
+                              Remove
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                 </div>
 
                 <div class="border-top pt-4 mx-4 mb-4">

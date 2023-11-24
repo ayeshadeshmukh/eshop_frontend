@@ -1,82 +1,313 @@
-import React, { useState } from 'react'
+import React ,{useState} from "react";
+import "../css/Product.css";
+import Product from "./Product";
+import { Link } from "react-router-dom";
 
 const Home = () => {
+  const [first, setfirst] = useState("Vjti");
 
-const [first, setfirst] = useState("Vjti")
-     
-const getMyName  = ()=> {
-
-    setfirst("Mumbai")
-}
-
-
-
-
+  const getMyName = () => {
+    setfirst("Mumbai");
+  };
 
   return (
     <>
-      <div className="home">
-        <div className="home__container">
-          <img
-            className="home__image"
-            src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.123rf.com%2Fphoto_96315306_online-shopping-concept-online-shopping-website-background.html&psig=AOvVaw3WCPPFODrjJ2-4FRqWVFSj&ust=1698738889133000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPDLmtOlnYIDFQAAAAAdAAAAABAE"
-            alt=""
-          />
+      {/* <!-- Intro --> */}
+      <div class="intro">
+        <h1>TRY OUT THESE LEATHER PRODUCTS</h1>
+        <h2>
+          Up to
+          <br />
+          <span class="dis">30% Discount</span>
+          <br />
+          on This <br />
+          New Year Season
+        </h2>
+        <h3>From 1st Jan to 31st Jan</h3>
+        {/* <a href="#" class="btn">SHOP NOW</a> */}
+      </div>
 
-          <div className="home__row">
-            {/* <Product
-              id="12321341"
-              title="The Lean Startup: How Constant Innovation Creates Radically Successful Businesses Paperback"
-              price={11.96}
-              rating={5}
-              image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._SX325_BO1,204,203,200_.jpg"
-            />
-            <Product
-              id="49538094"
-              title="Kenwood kMix Stand Mixer for Baking, Stylish Kitchen Mixer with K-beater, Dough Hook and Whisk, 5 Litre Glass Bowl"
-              price={239.0}
-              rating={4}
-              image="https://images-na.ssl-images-amazon.com/images/I/81O%2BGNdkzKL._AC_SX450_.jpg"
-            />
+      {/* </header> */}
+
+      {/* // <!--Benefits  --> */}
+      <section class="section benefits">
+        <div class="benefit-center box">
+          <div class="benefit">
+            <span class="icon">
+              <i class="bx bx-purchase-tag"></i>
+            </span>
+            <h4>Free Shipping</h4>
+            <span class="text">Capped at $16 per order</span>
           </div>
 
-          <div className="home__row">
-            <Product
-              id="4903850"
-              title="Samsung LC49RG90SSUXEN 49' Curved LED Gaming Monitor"
-              price={199.99}
-              rating={3}
-              image="https://images-na.ssl-images-amazon.com/images/I/71Swqqe7XAL._AC_SX466_.jpg"
-            />
-            <Product
-              id="23445930"
-              title="Amazon Echo (3rd generation) | Smart speaker with Alexa, Charcoal Fabric"
-              price={98.99}
-              rating={5}
-              image="https://media.very.co.uk/i/very/P6LTG_SQ1_0000000071_CHARCOAL_SLf?$300x400_retinamobilex2$"
-            />
-            <Product
-              id="3254354345"
-              title="New Apple iPad Pro (12.9-inch, Wi-Fi, 128GB) - Silver (4th Generation)"
-              price={598.99}
-              rating={4}
-              image="https://images-na.ssl-images-amazon.com/images/I/816ctt5WV5L._AC_SX385_.jpg"
-            />
+          <div class="benefit">
+            <span class="icon">
+              <i class="bx bx-book-reader"></i>
+            </span>
+            <h4>10-Day Returns</h4>
+            <span class="text">Shop without any fear</span>
           </div>
 
-          <div className="home__row">
-            <Product
-              id="90829332"
-              title="Samsung LC49RG90SSUXEN 49' Curved LED Gaming Monitor - Super Ultra Wide Dual WQHD 5120 x 1440"
-              price={1094.98}
-              rating={4}
-              image="https://images-na.ssl-images-amazon.com/images/I/6125mFrzr6L._AC_SX355_.jpg"
-            /> */}
+          <div class="benefit">
+            <span class="icon">
+              <i class="bx bx-headphone"></i>
+            </span>
+            <h4>24/7 Support</h4>
+            <span class="text">We are always there to help you</span>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* <!-- New Arrivals --> */}
+      <section class="section">
+        <div class="h">
+          <h1>
+            <span>New</span> Arrivals
+          </h1>
+        </div>
+        <div class="ac-center box">
+          <div class="ac">
+            <div class="img-cover">
+              <img src="../images/bag.jpg" alt="" />
+            </div>
+            <p>Women handbag leather</p>
+            <div class="rating">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+            </div>
+            <div class="price">LKR 5000</div>
+          </div>
+
+          <div class="ac">
+            <div class="img-cover">
+              <img src="slip1.jpg" alt="" />
+            </div>
+            <p>Women Sandals 2021</p>
+            <div class="rating">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bx-star"></i>
+            </div>
+            <div class="price">LKR 3000</div>
+          </div>
+
+          <div class="ac">
+            <div class="img-cover">
+              <img src="wallet2.jpg" alt="" />
+            </div>
+            <p>Luxuary wallet purse </p>
+            <div class="rating">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bx-star"></i>
+            </div>
+            <div class="price">LKR 2000</div>
+          </div>
+          <div class="ac">
+            <div class="img-cover">
+              <img src="belt2.jpg" alt="" />
+            </div>
+            <p>Leather belt</p>
+            <div class="rating">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bx-star"></i>
+            </div>
+            <div class="price">LKR 1500</div>
+          </div>
+        </div>
+      </section>
+
+      {/* <!-- Shop By Category --> */}
+      <section class="section">
+        <div class="h">
+          <h1>
+            <span>Shop By</span> Categories
+          </h1>
+        </div>
+        <div class="ab box">
+          <div class="item item-1">
+            <img src="../images/green_sweater.jpg" alt="" />
+          </div>
+          <div class="item item-2">
+            <img src="../images/green_sweater.jpg" alt="" />
+          </div>
+          <div class="item item-3">
+            <img src="../images/green_sweater.jpg" alt="" />
+          </div>
+          <div class="item item-4">
+            <img src="../images/green_sweater.jpg" alt="" />
+          </div>
+        </div>
+      </section>
+
+      {/* <!-- Popular Products --> */}
+      <section class="section">
+        <div class="h">
+          <h1>
+            Popular <span>Products</span>
+          </h1>
+        </div>
+        <div class="ac-center box">
+          <div class="ac">
+            <div class="img-cover">
+              <img src="hand3.jpg" alt="" />
+            </div>
+            <p>Luxuary Leather hand bag-black</p>
+            <div class="rating">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bx-star"></i>
+            </div>
+            <div class="price">LKR 8500</div>
+          </div>
+
+          <div class="ac">
+            <div class="img-cover">
+              <img src="slip3.jpg" alt="" />
+            </div>
+            <p>Covered leather sandal</p>
+            <div class="rating">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bx-star"></i>
+            </div>
+            <div class="price">LKR 5000</div>
+          </div>
+
+          <div class="ac">
+            <div class="img-cover">
+              <img src="wallet2.jpg" alt="" />
+            </div>
+            <p>Cute Wallet</p>
+            <div class="rating">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bx-star"></i>
+            </div>
+            <div class="price">LKR 1200</div>
+          </div>
+          <div class="ac">
+            <div class="img-cover">
+              <img src="hand4.jpg" alt="" />
+            </div>
+            <p>Ladies wallet-purple</p>
+            <div class="rating">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bx-star"></i>
+            </div>
+            <div class="price">LKR 2000</div>
+          </div>
+          <div class="ac">
+            <div class="img-cover">
+              <img src="slip4.jpg" alt="" />
+            </div>
+            <p>Black Sandals</p>
+            <div class="rating">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bx-star"></i>
+            </div>
+            <div class="price">LKR 3200</div>
+          </div>
+          <div class="ac">
+            <div class="img-cover">
+              <img src="wallet3.jpg" alt="" />
+            </div>
+            <p>Wallet-Ladies-2021</p>
+            <div class="rating">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bx-star"></i>
+            </div>
+            <div class="price">LKR 1600</div>
+          </div>
+          <div class="ac">
+            <div class="img-cover">
+              <img src="hand1.png" alt="" />
+            </div>
+            <p>Handbag-Ladies-Pink</p>
+            <div class="rating">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bx-star"></i>
+            </div>
+            <div class="price">LKR 5600</div>
+          </div>
+          <div class="ac">
+            <div class="img-cover">
+              <img src="wallet4.jpg" alt="" />
+            </div>
+            <p>Mini Leather Wallet</p>
+            <div class="rating">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bx-star"></i>
+            </div>
+            <div class="price">LKR 1500</div>
+          </div>
+        </div>
+      </section>
+
+      {/* // <!-----footer--------------------> */}
+      <section id="footer">
+        <div class="foot">
+          <ul>
+            <li>
+              <a href="">HOME</a>
+            </li>
+            <li>
+              <a href="">ABOUT US</a>
+            </li>
+            <li>
+              <a href="">CONTACT US</a>
+            </li>
+          </ul>
+
+          <div class="social-links">
+            <a href="">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="">
+              <i class="fab fa-behance"></i>
+            </a>
+            <a href="">
+              <i class="fab fa-dribbble"></i>
+            </a>
+            <a href="">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </section>
     </>
   );
-}
+};
 
-export default Home
+export default Home;

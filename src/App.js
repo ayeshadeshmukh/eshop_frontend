@@ -10,17 +10,12 @@ import SignUp from "./Components/SignUp";
 import SignIn from "./Components/SignIn";
 import AddProduct from "./Admin/AddProduct";
 import Cart from "./Components/Cart";
-import NewCart from "./Components/NewCart"
+import NewCart from "./Components/NewCart";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function App() {
   const [name, setname] = useState();
-
-  // useEffect(() => {
-  //   const data = JSON.parse(localStorage.getItem("userinfo"));
-  //   setname(data.name);
-  // }, []);
 
   return (
     <>

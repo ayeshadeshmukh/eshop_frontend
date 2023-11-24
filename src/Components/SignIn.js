@@ -2,16 +2,13 @@ import React, { useState } from "react";
 
 import axios from "axios";
 
-
-
 const SignIn = () => {
-
   const [email, setemail] = useState();
   const [password, setpassword] = useState();
 
   const submitHandler = (event) => {
     console.log("Request Submitted");
-    event.preventDefault(); //prevents
+    event.preventDefault();
     console.log(email, password);
 
     let url = "http://localhost:802/user/signin";
@@ -20,13 +17,12 @@ const SignIn = () => {
       password: password,
     };
 
-    //(url,data u want to sending to the server)
     axios.post(url, data).then((response) => {
       console.log(response.data);
       localStorage.setItem("userinfo", JSON.stringify(response.data));
-    }); // here we are creating a local storage using setitem but our data is json n here we only use string
+    });
   };
-  
+
   return (
     <div className="container">
       <form onSubmit={submitHandler}>

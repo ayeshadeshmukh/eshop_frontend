@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/Product.css";
-import Product from "./Product"
+import Product from "./Product";
 import { Link } from "react-router-dom";
 const NewCart = () => {
   return (
@@ -300,6 +300,7 @@ const NewCart = () => {
         </div>
       </section>
     </>
-  );};
+  );
+};
 
 export default NewCart;
